@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Nako今日签</title>
+    <style>
+        /* 背景设为淡粉色 */
+        body{
+            margin:0;
+            height:100vh;
+            background:#ffe6ec;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+        }
+
+        /* 显示框 */
+        #luckyBox{
+            width:340px;
+            padding:30px 20px;
+            background:#fff;
+            border-radius:16px;
+            box-shadow:0 4px 12px rgba(0,0,0,.1);
+            text-align:center;
+            white-space:pre;
+            font-family:Consolas,Monaco,"Lucida Console",monospace;
+            line-height:1.4;
+            transition:transform .2s;
+        }
+
+        /* 标题 */
+        #title{
+            font-size:28px;
+            font-weight:bold;
+            color:#d93e6a;
+            margin-bottom:14px;
+        }
+
+        /* 运势文字 */
+        #situation{
+            margin-top:12px;
+            font-size:24px;
+            font-weight:bold;
+            color:#ff5c8d;
+            font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+        }
+
+        /* 按钮 */
+        button{
+            margin-top:20px;
+            padding:10px 32px;
+            font-size:18px;
+            border:none;
+            background:#ff8fab;
+            color:#fff;
+            border-radius:25px;
+            cursor:pointer;
+            transition:background .3s;
+        }
+        button:hover{
+            background:#ff5c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="luckyBox">
+        <div id="title">Nako今日签</div>
+        <div id="catAscii">/\\_/\\</div>
+        <div id="situation">点击按钮查看今日运势</div>
+    </div>
+
+    <button onclick="makeLucky()">生成</button>
+
+    <script>
+        // ASCII 小猫池（共 15 组）
+        const cats = [
+            "/\\_/\\\n ( o.o)\n  > ^ <",
+            " /\\_/\\ \n(=^.^=)\n (  ) ( )",
+            "  /\\_/\\ \n=( °w° )=\n  )   (  //",
+            " /\\_/\\ \n(=@__@=)\n  (  ) ( )",
+            "  /\\__/\\ \n (=ｘ･ω･ｘ=)\n   (  )(  )",
+            "  /\\__/\\  \n (=ＴωＴ=) \n  (  u  u )",
+            "  /\\_/\\  \n (=ↀωↀ=) \n   (  )(  )",
+            "   /\\_/\\  \n  ( ⁰ ³ ⁰)  \n   >  <  >",
+            "  /\\_/\\  \n (=｀ω´=) \n  (  )(  )",
+            "  /\\_/\\  \n (=◕‿◕=) \n   (  )(  )",
+            "  /\\_/\\  \n (=｡･ω･｡=) \n   (  )(  )",
+            "  /\\_/\\  \n (=¬‿¬=) \n   (  )(  )",
+            "  /\\_/\\  \n (=ΦωΦ=) \n   (  )(  )",
+            "   /\\_/\\  \n  (=･Θ･=)  \n   (  )(  )",
+            "  /\\_/\\  \n (=≧◡≦=) \n   (  )(  )"
+        ];
+
+        // 扩充后的运势池
+        const situation = [
+            '大吉', '中吉', '小吉',
+            '宜发呆', '宜去看小猫', '宜学习',
+            '宜运动', '宜读书', '宜喝酒，但少喝',
+            '宜躺平', '宜吃甜品'
+        ];
+
+        // 生成函数
+        function makeLucky(){
+            const catAscii   = cats[Math.floor(Math.random() * cats.length)];
+            const todayLuck  = situation[Math.floor(Math.random() * situation.length)];
+
+            document.getElementById('catAscii').textContent   = catAscii;
+            document.getElementById('situation').textContent  = `今日${todayLuck}`;
+
+            // 轻微放大再还原，增加点击反馈
+            const box = document.getElementById('luckyBox');
+            box.style.transform = 'scale(1.05)';
+            setTimeout(()=> box.style.transform = 'scale(1)', 150);
+        }
+    </script>
+
+</body>
+</html>
